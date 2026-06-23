@@ -1,0 +1,22 @@
+{
+  "name": "lebonbot-sidecar",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node bundle.mjs && cp binaries/scraper binaries/scraper.cjs ../src-tauri/binaries/ && cp binaries/scraper ../src-tauri/binaries/scraper-x86_64-unknown-linux-gnu"
+  },
+  "dependencies": {
+    "@ai-sdk/anthropic": "^1.0.0",
+    "@ai-sdk/openai": "^1.0.0",
+    "ai": "^4.0.0",
+    "playwright-core": "^1.45.0",
+    "zod": "^3.23.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@yao-pkg/pkg": "^5.15.0",
+    "esbuild": "^0.28.0",
+    "typescript": "^5.5.0"
+  }
+}

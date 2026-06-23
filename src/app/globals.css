@@ -1,0 +1,367 @@
+/* ===== Dracula Theme Tokens ===== */
+:root {
+  --bg: #1a1b26;
+  --bg-card: #282a36;
+  --border: #44475a;
+  --fg: #f8f8f2;
+  --muted: #6272a4;
+  --accent: #ff79c6;
+  --accent2: #bd93f9;
+  --success: #50fa7b;
+  --danger: #ff5555;
+  --info: #8be9fd;
+  --warning: #ffb86c;
+
+  --font-mono: "JetBrains Mono", "Fira Code", "Cascadia Code", monospace;
+  --radius: 0; /* brutal — flat rectangles */
+  --transition: 150ms ease;
+
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+}
+
+/* ===== Noise Overlay ===== */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* ===== Base Reset ===== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  padding: var(--space-2xl);
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-mono);
+  font-weight: 300;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* ===== Typography ===== */
+h1,
+h2,
+h3 {
+  font-weight: 700;
+  line-height: 1.1;
+  margin: 0 0 var(--space-md);
+  color: var(--fg);
+}
+
+h1 {
+  font-size: 3rem;
+  letter-spacing: -0.04em;
+  color: var(--accent);
+}
+
+h2 {
+  font-size: 1.5rem;
+  letter-spacing: -0.02em;
+}
+
+p {
+  margin: 0 0 var(--space-sm);
+  color: var(--muted);
+  font-weight: 300;
+}
+
+a {
+  color: var(--accent2);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+
+a:hover {
+  color: var(--accent);
+}
+
+/* ===== Buttons ===== */
+button,
+.button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm) var(--space-md);
+  background: transparent;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition:
+    background var(--transition),
+    color var(--transition),
+    border-color var(--transition);
+}
+
+button:hover,
+.button:hover {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+button:focus-visible,
+.button:focus-visible {
+  outline: 2px solid var(--accent2);
+  outline-offset: 2px;
+}
+
+button.danger {
+  border-color: var(--danger);
+  color: var(--danger);
+}
+
+button.danger:hover {
+  background: var(--danger);
+  color: var(--bg);
+}
+
+button.muted {
+  border-color: var(--border);
+  color: var(--muted);
+}
+
+button.muted:hover {
+  background: var(--border);
+  color: var(--fg);
+}
+
+button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+button:disabled:hover {
+  background: transparent;
+  color: var(--accent);
+}
+
+/* ===== Forms ===== */
+label {
+  display: block;
+  margin-bottom: var(--space-lg);
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+}
+
+label:has(input[required])::after {
+  content: " *";
+  color: var(--accent);
+}
+
+input[type="text"],
+input[type="number"],
+input[type="password"],
+input[type="url"],
+select {
+  display: block;
+  width: 100%;
+  margin-top: var(--space-xs);
+  padding: var(--space-sm) var(--space-md);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--fg);
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  font-weight: 300;
+  transition: border-color var(--transition);
+}
+
+input:focus,
+select:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+input::placeholder {
+  color: var(--muted);
+  font-weight: 300;
+}
+
+select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M6 8L1 3h10z' fill='%236272a4'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right var(--space-sm) center;
+  padding-right: var(--space-xl);
+  cursor: pointer;
+}
+
+input[type="checkbox"] {
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: var(--space-sm);
+  vertical-align: middle;
+  transition:
+    border-color var(--transition),
+    background var(--transition);
+}
+
+input[type="checkbox"]:checked {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+input[type="checkbox"]:checked::after {
+  content: "✓";
+  color: var(--bg);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+input[type="checkbox"]:focus-visible {
+  outline: 2px solid var(--accent2);
+  outline-offset: 2px;
+}
+
+/* ===== Form Row (side-by-side fields) ===== */
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-md);
+}
+
+/* ===== Cards ===== */
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  padding: var(--space-lg);
+  margin-bottom: var(--space-lg);
+}
+
+.card.disabled {
+  opacity: 0.4;
+}
+
+/* ===== Status Badge ===== */
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: var(--space-xs) var(--space-sm);
+  border: 1px solid var(--border);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+}
+
+.status-badge.active {
+  border-color: var(--success);
+  color: var(--success);
+}
+
+.status-badge.paused {
+  border-color: var(--muted);
+  color: var(--muted);
+}
+
+/* ===== Toolbar ===== */
+.toolbar {
+  display: flex;
+  gap: var(--space-sm);
+  margin: var(--space-xl) 0 var(--space-lg);
+}
+
+/* ===== Alert Meta ===== */
+.alert-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm) var(--space-lg);
+  margin-bottom: var(--space-sm);
+  font-size: 0.8125rem;
+}
+
+.alert-meta span {
+  color: var(--muted);
+}
+
+.alert-meta .separator {
+  color: var(--border);
+}
+
+.alert-timing {
+  font-size: 0.75rem;
+  color: var(--muted);
+  margin-bottom: var(--space-md);
+  font-weight: 300;
+}
+
+/* ===== Action Row ===== */
+.action-row {
+  display: flex;
+  gap: var(--space-sm);
+  margin-top: var(--space-md);
+}
+
+/* ===== Settings Form ===== */
+.settings-form {
+  max-width: 520px;
+}
+
+.settings-form label {
+  margin-bottom: var(--space-lg);
+}
+
+.settings-saved {
+  font-size: 0.75rem;
+  color: var(--success);
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+/* ===== Page Wrapper ===== */
+.page {
+  padding-left: var(--space-2xl);
+}
+
+.page-header {
+  margin-bottom: var(--space-xl);
+}
+
+/* ===== Empty State ===== */
+.empty-state {
+  color: var(--muted);
+  font-weight: 300;
+  font-style: italic;
+  padding: var(--space-xl) 0;
+}
