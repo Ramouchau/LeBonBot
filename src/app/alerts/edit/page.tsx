@@ -2,7 +2,7 @@
 
 import { invoke } from '@tauri-apps/api/core';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { Suspense, useCallback, useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import AlertForm from '../../../components/AlertForm';
 
 interface Alert {
@@ -36,14 +36,11 @@ function EditAlertInner() {
     });
   }, [id]);
 
-  const handleSubmit = useCallback(
-    async (data: Record<string, unknown>) => {
-      if (!id) return;
-      await invoke('update_alert', { id, ...data });
-      router.push('/');
-    },
-    [id, router],
-  );
+  const handleSubmit = async (data: Record<string, unknown>) => {
+    if (!id) return;
+    await invoke('update_alert', { id, ...data });
+    router.push('/');
+  };
 
   if (!id) {
     return (
